@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { Col, Image, Row } from "react-bootstrap";
-import Hour from "./Hour";
+import { Col, Container, Image, Row } from "react-bootstrap";
+import FullInfo from "./FullInfo";
+import SeeMore from "./SeeMore";
+import AsideFull from "./AsideFull";
 
 const CityWeather = (props) => {
   const key = "b23fe8b9076a344ddf31522588a8da78";
@@ -11,6 +13,7 @@ const CityWeather = (props) => {
 
   // eslint-disable-next-line no-unused-vars
   const [city, setCity] = useState(null);
+  const [show, setShow] = useState(true);
 
   const getCityDataAPI = async () => {
     if (!lat || !lon) return;
@@ -30,6 +33,10 @@ const CityWeather = (props) => {
     }
   };
 
+  const changeFull = () => {
+    setShow(!show);
+  };
+
   useEffect(() => {
     getCityDataAPI();
 
@@ -42,39 +49,46 @@ const CityWeather = (props) => {
 
   return (
     <>
-      <Row className=" align-items-start mb-3">
-        <Col>
-          <Row>
+      <div className="d-flex w-10">
+        <div className="d-flex d-flex flex-column hour">
+          <Row className=" align-items-start mb-3">
             <Col>
-              <h1>
-                {city.city.name}
-              </h1>
-              <p>Chance of raining : {city.list[0].pop}%</p>
+              <Row>
+                <Col>
+                  <h1>
+                    {city.city.name},{" "}
+                    <span className="fs-sm">{city.city.country}</span>
+                  </h1>
+                  <p>Chance of raining : {city.list[0].pop}%</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <h1>
+                    <p className=" fs-1">
+                      {Math.round(city.list[0].main.temp)}°
+                    </p>
+                  </h1>
+                </Col>
+              </Row>
+            </Col>
+            <Col>
+              <Image
+                src={`http://openweathermap.org/img/wn/${city.list[0].weather[0].icon}@2x.png`}
+                alt={city.list[0].weather[0].description}
+                style={{ width: "150px", height: "150px" }}
+              />
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <h1>
-                <p className=" fs-1">{Math.round(city.list[0].main.temp)}°</p>
-              </h1>
-            </Col>
-          </Row>
-        </Col>
-        <Col>
-          <Image
-            src={`http://openweathermap.org/img/wn/${city.list[0].weather[0].icon}@2x.png`}
-            alt={city.list[0].weather[0].description}
-            style={{ width: "150px", height: "150px" }}
-          />
-        </Col>
-      </Row>
-      <Row className="bg-custom-light mb-3 py-3 rounded-1 hour">
-        <p className=" fs-sm"> TODAY&apos;S FORECAST</p>
-        <Hour data={city.list} />
-      </Row>
-      <Row>
-
-      </Row>
+          <Container fluid className="hour m-0 w-100 p-0">
+            {show && <FullInfo data={city} changeFull={changeFull} />}
+            {!show && <SeeMore data={city} changeFull={changeFull} />}
+          </Container>
+        </div>
+        <div className=" w-25">
+        {!show && <AsideFull data={city} changeFull={changeFull} />}
+        </div>
+      </div>
     </>
   );
 };

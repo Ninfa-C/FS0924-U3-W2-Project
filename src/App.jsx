@@ -23,7 +23,7 @@ function App() {
     <Container fluid className="d-flex">
       <BrowserRouter>
         <WeatherNav />
-        <Container fluid className="d-flex flex-column">
+        <Container fluid className="d-flex flex-column w-100">
           <SearchCity />
 
           <Routes>

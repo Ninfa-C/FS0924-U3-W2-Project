@@ -42,7 +42,7 @@ const ResultPreview = (props) => {
         <h4>
           {props.city.name}
         </h4>
-        <p>{props.city.state}</p>
+        <p>{props.city.state}, {props.city.country}</p>
         <p>ora locale</p>
       </Col>
       <Col>

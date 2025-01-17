@@ -73,3 +73,25 @@ body {
   padding-left: 0.6em;
 }
 
+.fs-sm{
+  font-size: 0.8em;
+  opacity: 0.75;
+}
+
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px rgba(255, 255, 255, 0.13) solid;
+
+}
+
+.weather-info {
+  text-align: center;
+}
+
+.hour{
+  width: 65%;
+  box-sizing: border-box;
+}
+

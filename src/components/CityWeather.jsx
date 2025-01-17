@@ -9,7 +9,7 @@ const CityWeather = (props) => {
   const { lat, lon } = props.coord||{};
 
   // eslint-disable-next-line no-unused-vars
-  const [city, setCity] = useState([]);
+  const [city, setCity] = useState(null);
 
   const getCityDataAPI = async () => {
     if (!lat || !lon) return; 
@@ -34,7 +34,7 @@ const CityWeather = (props) => {
     {console.log(city)}
   }, [props.coord]);
 
-  if (!city || !city.weather || city.weather.length === 0) {
+  if (!city) {
     return <p>Loading...</p>;
   }
 
@@ -42,7 +42,7 @@ const CityWeather = (props) => {
     <>
       <Row>
         <Col>
-          <h1>{city.city.name}</h1> {/* Correctly accessing the city name */}
+          <h1>{city.city.name}{console.log(city)}</h1> {/* Correctly accessing the city name */}
         </Col>
         <Col>
           {/* Additional weather details can be added here */}

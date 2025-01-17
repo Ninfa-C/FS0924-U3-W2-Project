@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+* {
+  line-height: 1.15;
+  text-size-adjust: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", serif;
+  background-color: #0b131e;
+  color: whitesmoke;
+}
+
+.navbar {
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  font-weight: bold;
+  opacity: 0.75;
+}
+
+.bi{
+  font-size: 1.7em;
+}
+
+.nav-link:focus,
+.nav-link:active,
+.nav-link:hover {
+  color: white;
+  opacity: 1;
+}
+
+.bg-custom-dark {
+  background-color: #0b131e;
+}
+
+.bg-custom-light {
+  background-color: #202b3b;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #202b3b;
+  border-radius: 15px;
+  border: none;
+  height: 3em;
+  width: 50%;
+}
+
+.search-container input::placeholder {
+  font-size: 1em;
+}
+
+.search-container input,
+.search-container input:focus,
+.search-container input:-webkit-autofill,
+.search-container input:-webkit-autofill:focus {
+  box-shadow: 0 0 0px 1000px #202b3b inset;
+  -webkit-text-fill-color: white;
+  font-size: 1em;
+  opacity: .75;
+  background-color: #202b3b !important;
+  color: white !important;
+  border: none;
+  outline: none;
+  padding-left: 0.6em;
+}
+

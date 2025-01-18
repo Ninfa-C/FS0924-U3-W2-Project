@@ -18,13 +18,13 @@ body {
   align-items: center;
 }
 
-.nav-link{
+.nav-link {
   color: white;
   font-weight: 500;
   opacity: 0.75;
 }
 
-.bi{
+.bi {
   font-size: 1.7em;
 }
 
@@ -65,7 +65,7 @@ body {
   box-shadow: 0 0 0px 1000px #202b3b inset;
   -webkit-text-fill-color: white;
   font-size: 1em;
-  opacity: .75;
+  opacity: 0.75;
   background-color: #202b3b !important;
   color: white !important;
   border: none;
@@ -73,14 +73,14 @@ body {
   padding-left: 0.6em;
 }
 
-.fs-sm{
+.fs-sm {
   font-size: 0.8em;
   opacity: 0.75;
 }
 
 .carousel-item {
   display: flex;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   border-right: 1px rgba(255, 255, 255, 0.13) solid;
@@ -88,21 +88,26 @@ body {
 
 .weather-info {
   text-align: center;
-  
 }
 
-.hour{
+.hour {
   width: 65%;
   box-sizing: border-box;
 }
 
-p{
-  margin:0;
+p {
+  margin: 0;
 }
 
-ù
-.react-multi-carousel-item {
-  width: auto !important; 
-  max-width: 100% !important; 
+ù .react-multi-carousel-item {
+  width: auto !important;
+  max-width: 100% !important;
   box-sizing: border-box;
+}
+
+li {
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  font-size: var(--bs-nav-link-font-size);
+  font-weight: var(--bs-nav-link-font-weight);
+  color: var(--bs-nav-link-color);
 }

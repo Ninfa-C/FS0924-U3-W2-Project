@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Row } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css"; // Make sure to import the required CSS
 
@@ -7,7 +8,7 @@ const Hour = ({ data, isAside }) => {
 
   useEffect(() => {
     setItems(data.slice(0, 15));
-    console.log(items);
+    //console.log(items);
   }, [data, isAside]);
 
   const responsive = {
@@ -30,40 +31,45 @@ const Hour = ({ data, isAside }) => {
   };
 
   return (
-    <Carousel responsive={responsive} infinite={false} autoPlay={false}>
-      {items.map((item, index) => (
-        <div key={index} className="carousel-item ">
-          <div className="weather-info">
-            <p className=" fs-sm">
-              {(() => {
-                const [month, day] = item.dt_txt
-                  .split(" ")[0]
-                  .split("-")
-                  .slice(1);
-                return `${day}/${month}`;
-              })()}
-            </p>
+    <>
+      <Row className="bg-custom-light mb-3 py-3 rounded-3">
+        <p className=" fs-sm mb-3 fw-bold"> TODAY&apos;S FORECAST</p>
+        <Carousel responsive={responsive} infinite={false} autoPlay={false}>
+          {items.map((item, index) => (
+            <div key={index} className="carousel-item ">
+              <div className="weather-info">
+                <p className=" fs-sm mb-2">
+                  {(() => {
+                    const [month, day] = item.dt_txt
+                      .split(" ")[0]
+                      .split("-")
+                      .slice(1);
+                    return `${day}/${month}`;
+                  })()}
+                </p>
 
-            <p className=" fs-sm">
-              {(() => {
-                const time = parseInt(
-                  item.dt_txt.split(" ")[1].split(":").slice(0, 1)
-                );
-                const period = time >= 0 && time < 12 ? "AM" : "PM";
-                return `${time}:00 ${period}`;
-              })()}
-            </p>
-            <img
-              src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
-              alt={item.weather[0].description}
-              style={{ width: "60px", height: "60px" }}
-            />
-            <p>{Math.round(item.main.temp)}°C</p>
-            <p>{item.weather.description}</p>
-          </div>
-        </div>
-      ))}
-    </Carousel>
+                <p className=" fs-sm">
+                  {(() => {
+                    const time = parseInt(
+                      item.dt_txt.split(" ")[1].split(":").slice(0, 1)
+                    );
+                    const period = time >= 0 && time < 12 ? "AM" : "PM";
+                    return `${time}:00 ${period}`;
+                  })()}
+                </p>
+                <img
+                  src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                  alt={item.weather[0].description}
+                  style={{ width: "60px", height: "60px" }}
+                />
+                <p>{Math.round(item.main.temp)}°C</p>
+                <p>{item.weather.description}</p>
+              </div>
+            </div>
+          ))}
+        </Carousel>
+      </Row>
+    </>
   );
 };
 

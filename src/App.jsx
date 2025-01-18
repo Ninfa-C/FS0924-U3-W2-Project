@@ -6,7 +6,7 @@ import WeatherNav from "./components/WeatherNav";
 //import { BrowserRouter, Routes } from "react-router-dom";
 import GetCity from "./components/GetCity";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 
 import HomePage from "./components/HomePage";
 import CityWeather from "./components/CityWeather";
@@ -20,24 +20,32 @@ function App() {
     setCoord(query);
   };
   return (
-    <Container fluid className="d-flex">
+    <Container fluid className="d-flex w-100">
       <BrowserRouter>
-        <WeatherNav />
-        <Container fluid className="d-flex flex-column w-100">
-          <SearchCity />
-
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/Weather/:id"
-              element={<CityWeather coord={coord} />}
-            />
-            <Route
-              path="/Cities/:city"
-              element={<GetCity changeCoord={changeCoord} />}
-            />
-          </Routes>
-        </Container>
+        <Row className="w-100">
+          <Col xs={12} md={1}>
+            <WeatherNav />
+          </Col>
+          <Col xs={12} md={11}>
+            <SearchCity />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/Weather/:id"
+                element={<CityWeather coord={coord} />}
+              />
+              <Route path="/Weather" element={<CityWeather coord={coord} />} />
+              <Route
+                path="/Cities"
+                element={<GetCity changeCoord={changeCoord} />}
+              />
+              <Route
+                path="/Cities/:city"
+                element={<GetCity changeCoord={changeCoord} />}
+              />
+            </Routes>
+          </Col>
+        </Row>
       </BrowserRouter>
     </Container>
   );

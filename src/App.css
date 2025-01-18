@@ -97,12 +97,12 @@ body {
 }
 
 p{
-  margin:0
+  margin:0;
 }
 
 ù
 .react-multi-carousel-item {
-  width: auto !important;  /* Prevent the items from becoming larger than their container */
-  max-width: 100% !important;  /* Ensure the items don't stretch beyond their container */
-  box-sizing: border-box;  /* Make sure padding/margin doesn't affect the item width */
+  width: auto !important; 
+  max-width: 100% !important; 
+  box-sizing: border-box;
 }

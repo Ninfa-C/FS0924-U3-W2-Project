@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import { Col, Image, Row } from "react-bootstrap";
 import FullInfo from "./FullInfo";
 import SeeMore from "./SeeMore";
-import AsideFull from "./AsideFull";
+import Aside from "./Aside";
+import Hour from "./Hour";
 
 const CityWeather = (props) => {
   const key = "b23fe8b9076a344ddf31522588a8da78";
@@ -49,11 +50,11 @@ const CityWeather = (props) => {
 
   return (
     <>
-      <div className="d-flex w-10">
-        <div className="d-flex d-flex flex-column hour">
+      <Row className="d-flex d-flex gap-4">
+        <Col xs={12} md={8}>
           <Row className=" align-items-start mb-3">
             <Col>
-              <Row>
+              <Row className="mb-2">
                 <Col>
                   <h1>
                     {city.city.name},{" "}
@@ -72,7 +73,7 @@ const CityWeather = (props) => {
                 </Col>
               </Row>
             </Col>
-            <Col>
+            <Col className="text-end">
               <Image
                 src={`http://openweathermap.org/img/wn/${city.list[0].weather[0].icon}@2x.png`}
                 alt={city.list[0].weather[0].description}
@@ -80,15 +81,16 @@ const CityWeather = (props) => {
               />
             </Col>
           </Row>
-          <Container fluid className="hour m-0 w-100 p-0">
+          <Row className="m-0 ">
             {show && <FullInfo data={city} changeFull={changeFull} />}
             {!show && <SeeMore data={city} changeFull={changeFull} />}
-          </Container>
-        </div>
-        <div className=" w-25">
-        {!show && <AsideFull data={city} changeFull={changeFull} />}
-        </div>
-      </div>
+          </Row>
+        </Col>
+        <Col xs={12} md={3}>
+          {!show && <Hour data={city.list} isAside={true} />}
+          <Aside data={city} changeFull={changeFull} />
+        </Col>
+      </Row>
     </>
   );
 };

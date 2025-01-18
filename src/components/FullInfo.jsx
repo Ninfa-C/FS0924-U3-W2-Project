@@ -5,10 +5,7 @@ import { BrightnessLowFill, DropletHalf, ThermometerHalf, Wind } from "react-boo
 const FullInfo= ({ data, changeFull })=>{
     return(
         <>
-        <Row className="bg-custom-light mb-3 py-3 rounded-3">
-          <p className=" fs-sm mb-2"> TODAY&apos;S FORECAST</p>
           <Hour data={data.list} isAside={false}/>
-        </Row>
         <Row className="bg-custom-light mb-3 py-3 rounded-3">
           <Col>
             <Row className="mb-3">

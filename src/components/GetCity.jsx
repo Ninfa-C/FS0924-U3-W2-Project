@@ -8,11 +8,11 @@ const GetCity = (props) => {
   const param = useParams()
   const navigate = useNavigate();
   //const unit = 'metric'
-
+const popular= ['londra']
   const [city, setCity] = useState([]);
 
-  const getCityDataAPI = async () => {
-    const Geocoding = `http://api.openweathermap.org/geo/1.0/direct?q=${param.city}&limit=10&appid=${key}`;
+  const getCityDataAPI = async (query) => {
+    const Geocoding = `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=10&appid=${key}`;
     // const builtInCity = `https://api.openweathermap.org/data/2.5/forecast?q=${query}&units=${unit}&appid=${key}`;
     try {
       const response = await fetch(Geocoding);
@@ -27,9 +27,14 @@ const GetCity = (props) => {
   };
 
   useEffect(() => {
-    getCityDataAPI();
-    //console.log(city);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+if(param.city){
+  getCityDataAPI(param.city)
+} else{
+  popular.forEach(element => {
+    getCityDataAPI(element)
+    
+  });
+}
   }, [param]);
 
 

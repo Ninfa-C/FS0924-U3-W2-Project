@@ -64,7 +64,6 @@ return { max, min, mostFrequentWeather, weatherIcon };
       <Row className="bg-custom-light mb-3 py-3 rounded-3">
         <Col>
         <p className=" fs-sm mb-3 fw-bold"> 6-DAY FORECAST</p>
-          {console.log(days)}
           {days.length > 1 &&
             days.map((item, i) => {
               return (

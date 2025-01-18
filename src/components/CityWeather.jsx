@@ -5,21 +5,22 @@ import FullInfo from "./FullInfo";
 import SeeMore from "./SeeMore";
 import Aside from "./Aside";
 import Hour from "./Hour";
+import { useParams } from "react-router-dom";
 
 const CityWeather = (props) => {
   const key = "b23fe8b9076a344ddf31522588a8da78";
   //const query = "torino";
   const unit = "metric";
-  const { lat, lon } = props.coord || {};
+  const param = useParams();
 
   // eslint-disable-next-line no-unused-vars
   const [city, setCity] = useState(null);
   const [show, setShow] = useState(true);
 
-  const getCityDataAPI = async () => {
-    if (!lat || !lon) return;
+  const getCityDataAPI = async (query) => {
+    if (!query.lat || !query.lon) return;
     //const Geocoding= `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=10&appid=${key}`
-    const builtInCity = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${unit}&appid=${key}`;
+    const builtInCity = `http://api.openweathermap.org/data/2.5/forecast?lat=${query.lat}&lon=${query.lon}&units=${unit}&appid=${key}`;
     try {
       const response = await fetch(builtInCity);
       if (response.ok) {
@@ -39,9 +40,16 @@ const CityWeather = (props) => {
   };
 
   useEffect(() => {
+
     getCityDataAPI();
 
-    //{console.log(city)}
+    if (param && param.id) {
+      document.title = `${param.id} - Meteo App`;
+      getCityDataAPI({ lat: props.coord.lat, lon: props.coord.lon })
+    } else {
+      document.title = `Torino- Meteo App`;
+      getCityDataAPI({ lat: 45.1333, lon: 7.3667 })
+    }
   }, [props.coord]);
 
   if (!city) {

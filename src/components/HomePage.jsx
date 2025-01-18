@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 
 const HomePage = () => {
+useEffect(()=>{
+  document.title = `Homepage- Meteo App`;
+})
+
   return (
     <Container fluid className="d-flex flex-column">
       <h1>Benvenut* nella mia prima pagina meteo</h1>
